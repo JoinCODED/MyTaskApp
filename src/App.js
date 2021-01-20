@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+const styles = {
+  doneStyling: { color: "blue", fontStyle: "italic" },
+  taskStyling: { color: "grey" },
+};
 
 function App() {
+  const task = {
+    name: "Think think",
+    done: false,
+    priority: "low",
+  };
+
+  const status = (done) =>
+    done ? (
+      <td className="fa-check-circle">Yes</td>
+    ) : (
+      <td className="fa-times-circle">No</td>
+    );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="rectangle">
+      <p className="title">TO DO LIST</p>
+      <table>
+        <thead>
+          <th style={styles.doneStyling}>DONE</th>
+          <th style={styles.taskStyling}>TASK</th>
+          <th>PRIORITY</th>
+        </thead>
+        <tbody>
+          <tr>
+            {status(task.done)}
+            <td>Task: {task.name}</td>
+            <td className={task.priority}>{task.priority.toUpperCase()}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
